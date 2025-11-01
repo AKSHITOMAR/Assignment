@@ -1,0 +1,74 @@
+# APPROACH 1:-
+
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    int dup[n];
+    int c=0;
+   for(int i=0;i<n;i++){
+    for(int j=i+1;j<n;j++){
+        if(arr[i]==arr[j]){
+            dup[c++]=arr[i];
+            break;
+        }
+    }
+   }
+   for(int i=0;i<c;i++){
+    cout<<dup[i]<<" ";
+   }
+}
+
+
+# APPROACH 2:-
+
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int n;
+    cin>>n;
+    vector<int>arr(n);
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+   sort(arr.begin(), arr.end());
+   int k=0;
+   arr[k]=arr[0];
+   k++;
+   for(int i=1;i<n;i++){
+    if(arr[i]!=arr[i-1]){
+        arr[k]=arr[i];
+        k++;
+    }
+   }
+   for(int i=0;i<k;i++){
+    cout<<arr[i]<<" ";
+   }
+}
+
+# APPROACH 3:-
+
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int n;
+    cin>>n;
+    vector<int>arr(n);
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    unordered_map<int,int>mp;
+    for(int x:arr){
+        mp[x]++;
+    }
+    for(auto it:mp){
+        if(it.second>1){
+            cout<<it.first<<" ";
+        }
+    }
+}
