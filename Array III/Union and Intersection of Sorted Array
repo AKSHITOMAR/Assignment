@@ -1,3 +1,5 @@
+#  INTERSECTION 
+
 class Solution {
 public:
     vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
@@ -20,4 +22,25 @@ public:
         }
         return result;
     }
+
+#  UNION 
+
+class Solution {
+  public:
+    vector<int> findUnion(vector<int>& a, vector<int>& b) {
+       set<int>s;
+       for(int i=0;i<a.size();i++){
+           s.insert(a[i]);
+       }
+       for(int i=0;i<b.size();i++){
+           s.insert(b[i]);
+       }
+       vector<int>result;
+       for(auto it=s.begin();it!=s.end();it++){
+           result.push_back(*it);
+       }
+       return result;
+    }
+};
+
 };
