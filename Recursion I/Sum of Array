@@ -1,0 +1,15 @@
+class Solution {
+  public:
+  int arrayss(vector<int>& arr ,int i,int sum){
+      int n=arr.size();
+      if(i==n){
+          return sum;
+      }
+      return arrayss(arr,i+1,sum+arr[i]);
+  }
+    int arraySum(vector<int>& arr) {
+        int sum=0;
+        int i=0;
+        return arrayss(arr,i,sum);
+    }
+};
