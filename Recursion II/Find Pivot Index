@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int solve(vector<int>&nums,int i,int cs,int sum){
+        if(i==nums.size()){
+            return -1;
+        }
+        int rs=sum-cs-nums[i];
+        if(cs==rs){
+            return i;
+        }
+        return solve(nums,i+1,cs+nums[i],sum);
+    }
+    int pivotIndex(vector<int>& nums) {
+        int sum=0;
+        for(int i=0;i<nums.size();i++){
+            sum+=nums[i];
+        }
+        return solve(nums,0,0,sum);
+    }
+};
