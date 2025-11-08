@@ -1,0 +1,50 @@
+#include<bits/stdc++.h>
+using namespace std;
+class node{
+    public:
+    int data;
+    node* left;
+    node* right;
+    node(int d){
+        this->data=d;
+        this->left=NULL;
+        this->right=NULL;
+    }
+};
+void levelordertraversal(node* root){
+    queue<node*>q;
+     if(root==NULL){
+        return;
+    }
+    q.push(root);
+    while(!q.empty()){
+        node* temmp=q.front();
+        q.pop();
+        cout<<temmp->data<<" ";
+        if(temmp->left){
+        q.push(temmp->left);
+        }
+        if(temmp->right){
+            q.push(temmp->right);
+        }
+    }
+}
+node* buildtree(node* root){
+    cout<<"enter data"<<endl;
+    int data;
+    cin>>data;
+    if(data==-1){
+        return NULL;
+    }
+    root=new node(data);
+    cout<<"Enter left child of "<<data<<" "<<endl;
+    root->left=buildtree(root->left);
+    cout<<"Enter right child of"<<data<<" "<<endl;
+    root->right=buildtree(root->right);
+    return root;
+}
+int main(){
+    node* root=NULL;
+    root=buildtree(root);
+    levelordertraversal(root);
+}
