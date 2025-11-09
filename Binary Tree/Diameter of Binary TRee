@@ -1,0 +1,49 @@
+#include<bits/stdc++.h>
+using namespace std;
+class node{
+    public:
+    int data;
+    node* left;
+    node* right;
+    node(int d){
+        this->data=d;
+        this->left=NULL;
+        this->right=NULL;
+    }
+};
+int solve(node* root,int &result){
+    if(root==NULL){
+        return 0;
+    }
+    int left=solve(root->left,result);
+    int right=solve(root->right,result);
+    result=max(result,left+right);
+    return max(left,right)+1;
+}
+int diameter(node* root){
+    if(root==NULL){
+        return 0;
+    }
+    int result=INT_MIN;
+    solve(root,result);
+    return result;
+}
+node* buildtree(node* root){
+    cout<<"enter the data: "<<endl;
+    int data;
+    cin>>data;
+    if(data==-1){
+        return NULL;
+    }
+    root=new node(data);
+    cout<<"enter left child of : "<<data<<endl;
+    root->left=buildtree(root->left);
+    cout<<"enter right child of : "<<data<<endl;
+    root->right=buildtree(root->right);
+    return root;
+}
+int main(){
+    node* root=NULL;
+    root=buildtree(root);
+    cout<<"result of diameter is: "<<diameter(root)<<endl;
+}
