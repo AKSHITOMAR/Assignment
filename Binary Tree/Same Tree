@@ -1,0 +1,51 @@
+#include<bits/stdc++.h>
+using namespace std;
+class node{
+    public:
+    int data;
+    node* left;
+    node* right;
+    node(int d){
+        this->data=d;
+        this->left=NULL;
+        this->right=NULL;
+    }
+};
+bool sametree(node* p,node* q){
+    if(p==NULL && q==NULL){
+            return true;
+            }
+        if((p!=NULL && q==NULL) || (p==NULL && q!=NULL)){
+            return false;
+        }
+        if(p->data==q->data && sametree(p->left,q->left) &&sametree(p->right,q->right)){
+            return true;
+        }
+        return false;
+}
+node* buildtree(node* root){
+    cout<<"enter data: "<<endl;
+    int data;
+    cin>>data;
+    if(data==-1){
+        return NULL;
+    }
+    root=new node(data);
+    cout<<"enter left child of"<<data<<endl;
+    root->left=buildtree(root->left);
+    cout<<"enter right child of"<<data<<endl;
+    root->right=buildtree(root->right);
+    return root;
+}
+int main(){
+    node* root1=NULL;
+    root1=buildtree(root1);
+    node* root2=NULL;
+    root2=buildtree(root2);
+    if( sametree(root1,root2)){
+        cout<<"true"<<endl;
+    }
+    else{
+        cout<<"false"<<endl;
+    }
+}
