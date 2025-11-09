@@ -1,0 +1,56 @@
+#include<bits/stdc++.h>
+using namespace std;
+class node{
+    public:
+    int data;
+    node* left;
+    node* right;
+    node(int d){
+        this->data=d;
+        this->left=NULL;
+        this->right=NULL;
+    }
+};
+bool solve(node* left,node* right){
+    if(left==NULL && right ==NULL){
+        return true;
+    }
+    if(left==NULL || right==NULL){
+        return false;
+    }
+    if(left->data!=right->data){
+        return false;
+    }
+    return solve(left->left,right->right) && solve(left->right , right->left);
+}
+bool symmetric(node* root){
+    if(root==NULL){
+        return true;
+    }
+    return solve(root->left,root->right);
+}
+node* buildtree(node* root){
+    cout<<"enter data : "<<endl;
+    int data;
+    cin>>data;
+    if(data==-1){
+        return NULL;
+    }
+    root=new node(data);
+    cout<<"enter left child of : "<<data<<endl;
+    root->left=buildtree(root->left);
+    cout<<"enter right chilf of : "<<data<<endl;
+    root->right=buildtree(root->right);
+    return root;
+}
+int main(){
+    node* root=NULL;
+    root=buildtree(root);
+    if(symmetric(root)){
+        cout<<"true"<<endl;
+    }
+    else{
+        cout<<"false"<<endl;
+    }
+
+}
