@@ -1,0 +1,32 @@
+class Solution {
+public:
+    vector<int>getmaxofleft(vector<int>& height,int n){
+        vector<int>leftmax(n);
+        int maxi=0;
+        for(int i=0;i<n;i++){
+            leftmax[i]=maxi;
+            maxi=max(maxi,height[i]);
+        }
+        return leftmax;
+    }
+    vector<int>getmaxofright(vector<int>& height,int n){
+        vector<int>rightmax(n);
+        int maxi=0;
+        for(int i=n-1;i>=0;i--){
+            rightmax[i]=maxi;
+            maxi=max(maxi,height[i]);
+        }
+        return rightmax;
+    }
+    int trap(vector<int>& height) {
+          int n=height.size();
+        vector<int>leftmax=getmaxofleft(height,n);
+        vector<int>rightmax=getmaxofright(height,n);
+        int sum=0;
+        for(int i=0;i<n;i++){
+            int s=max(0,min(leftmax[i],rightmax[i])-height[i]);
+            sum+=s;
+          }
+        return sum;
+    }
+};
