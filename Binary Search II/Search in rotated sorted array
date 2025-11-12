@@ -1,20 +1,33 @@
-#include<bits/stdc++.h>
-using namespace std;
-int main(){
-    int n;
-    cin>>n;
-    vector<int>arr(n);
-    for(int i=0;i<n;i++){
-        cin>>arr[i];
-    }
-    int target;
-    cin>>target;
-    for(int i=0;i<arr.size();i++){
-        if(arr[i]==target){
-            cout<<i<<endl;
-            return 0;
-
+class Solution {
+public:
+    int search(vector<int>& nums, int target) {
+        int n=nums.size();
+        int start=0,end=n-1;
+        while(start<=end){
+            int mid=start+(end-start)/2;
+            if(nums[mid]==target){
+                return mid;
+            }
+            // left sorted
+            if(nums[start]<=nums[mid]){
+                if(nums[start]<=target && nums[mid]>target){
+                    end=mid-1;
+                }
+                else{
+                    start=mid+1;
+                }
+            }
+            // right sorted
+            else{
+                if(nums[mid]<target && nums[end]>=target){
+                    start=mid+1;
+                }
+                else{
+                    end=mid-1;
+                }
+            }
+            mid=start+(end-start)/2;
         }
+        return -1;
     }
-    cout<<-1<<endl;
-}
+};
