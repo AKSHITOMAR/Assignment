@@ -1,0 +1,18 @@
+class Solution {
+  public:
+    char getMaxOccuringChar(string& s) {
+        unordered_map<char,int>mp;
+        for(char c:s){
+            mp[c]++;
+        }
+        int maxi=INT_MIN;
+        char ans=s[0];
+        for(auto it: mp){
+            if(it.second > maxi ||(it.second==maxi && it.first<ans)){
+                maxi=it.second;
+                ans=it.first;
+            }
+        }
+        return ans;
+    }
+};
